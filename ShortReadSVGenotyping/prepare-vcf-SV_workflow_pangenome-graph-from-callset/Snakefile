@@ -1,0 +1,90 @@
+configfile:'config.yaml'
+
+## parameters
+vcf = config['vcf']
+reference = config['reference']
+scripts = 'scripts'
+# allow max 20 % missing alleles at a variant position
+frac_missing = 1
+outdir = config['outdir']
+
+rule all:
+	input:
+		expand('{outdir}/pangenome/pangenome.vcf', outdir=outdir),
+
+
+
+###########################################################
+##  Convert VCF into pangenome graph by merging variants ##
+##  that are overlapping into multi-allelic positions.   ##
+###########################################################
+
+# check that VCF is correct and remove positions with more than frac_missing missing alleles
+rule prepare_vcf:
+	input:
+		vcf
+	output:
+		temp('{outdir}/input-vcf/input-missing-removed.vcf')
+	log:
+		'{outdir}/input-vcf/prepare-vcf.log'
+	benchmark:
+		'{outdir}/benchmarks/prepare-vcf.txt'
+	conda:
+		'env/merging.yml'
+	shell:
+		"cat {input} | python3 {scripts}/prepare-vcf.py --missing {frac_missing} 2> {log} 1> {output}"
+
+
+# assign IDs to all alleles
+rule add_ids:
+	input:
+		'{outdir}/input-vcf/input-missing-removed.vcf'
+	output:
+		'{outdir}/input-vcf/callset.vcf'
+	benchmark:
+		'{outdir}/benchmarks/add-ids.txt'
+	log:
+		'{outdir}/input-vcf/callset.log'
+	conda:
+		'env/merging.yml'
+	shell:
+		'cat {input} | python3 {scripts}/add-ids.py 2> {log} 1> {output}'
+
+
+# create biallelic VCF with one record per ALT allele
+rule normalize:
+	input:
+		'{outdir}/input-vcf/callset.vcf'
+	output:
+		'{outdir}/input-vcf/callset-biallelic.vcf'
+	benchmark:
+		'{outdir}/benchmarks/callset-biallelic.txt'
+	log:
+		'{outdir}/input-vcf/callset-biallelic.log'
+	conda:
+		'env/merging.yml'
+	shell:
+		'bcftools norm -m- {input} 2> {log} 1> {output}'
+
+
+# merge variants into a pangenome graph
+rule merge_haplotypes:
+	input:
+		vcf = '{outdir}/input-vcf/callset-biallelic.vcf',
+		reference = reference
+	output:
+		'{outdir}/pangenome/pangenome.vcf'
+	log:
+		 '{outdir}/pangenome/pangenome.log'
+	benchmark:
+		'{outdir}/benchmarks/merge-haplotypes.txt'
+	conda:
+		"env/merging.yml"
+	resources:
+		mem_total_mb=900000,
+		runtime_hrs=30,
+		runtime_min=1
+	shell:
+		"""
+		python3 {scripts}/merge_vcfs.py merge -vcf {input.vcf} -r {input.reference} -ploidy 2  2> {log} 1> {output}
+		"""

@@ -1,0 +1,10 @@
+# input vcf with variants to be genotyped
+vcf: /lustre/home/acct-clswcc/clswcc-xhz/panpeanut/pan_cactus/Chrmerge/AABB.mc.diploid.vcf
+#callset.vcf
+
+# reference genome
+reference: /lustre/home/acct-clswcc/clswcc-xhz/panpeanut/ref/NDH108.Chr.fa
+#ref.fa
+
+# name of the output directory
+outdir: AABB_mc_diploid
