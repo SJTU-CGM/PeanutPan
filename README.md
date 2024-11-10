@@ -16,10 +16,10 @@ SNP and Indel calling and filtering using short reads based on the reference gen
 ### PopulationGeneticAnalysis (Preparing)
 Population genetic analysis based on filtered SNPs such as phylogenetic tree, PCA, PI, Fst, XP-CLR and Population structure inferring
 
-### GenomeAssembly (Preparing)
+### GenomeAssembly 
 High-quality genome assembly using long reads, short reads and Hi-C
 
-### AssemblyBenchmark
+### AssemblyBenchmark (Preparing)
 BUSCO, QUAST, LAI benchmark of genome assembly
 
 ### RepeatAnnotation (Preparing)
