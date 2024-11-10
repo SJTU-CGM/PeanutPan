@@ -28,4 +28,12 @@ Repeat element annotation with genome
 ### GeneAnnotation (Preparing)
 Gene annotation with genome
 
+### SequenceLevel_PangenomeBuild
+Sequence-level pangenome build using minigraph-cactus
+
+### ShortReadGenotyping
+Genotyping with short reads using Pangeine
+
+
+
 If you have any questions, please contact with xuehzh95@sjtu.edu.cn.
