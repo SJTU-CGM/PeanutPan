@@ -34,10 +34,13 @@ Gene-level pangenome build using orthofinder
 ### SequenceLevel_PangenomeBuild
 Sequence-level pangenome build using minigraph-cactus
 
+### SVDetection
+SV detection with assemblies, long reads using cutesv-asm, svim-asm, cutesv
+
 ### ShortReadGenotyping
 Genotyping with short reads using Pangeine
 
-### RNAseqCount (Preparing)
+### RNAseqCount
 Count gene expression level using Stringtie
 
 
