@@ -25,7 +25,7 @@ BUSCO, QUAST, LAI benchmark of genome assembly
 ### RepeatAnnotation 
 Repeat element annotation with genome
 
-### GeneAnnotation (Preparing)
+### GeneAnnotation
 Gene annotation with genome
 
 ### GeneLevel_PangenomeBuild
