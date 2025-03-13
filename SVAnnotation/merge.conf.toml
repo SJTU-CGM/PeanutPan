@@ -1,0 +1,26 @@
+[[annotation]]
+file="/share/home/user/hzxue/peanut/SVanno/NDH108.gene.bed.gz"
+columns = [4]
+names=["olp_gene"]
+ops = ["uniq"]
+
+[[annotation]]
+file="/share/home/user/hzxue/peanut/SVanno/NDH108.exon.bed.gz"
+columns = [4]
+names=["olp_exon"]
+ops = ["uniq"]
+
+[[annotation]]
+file="/share/home/user/hzxue/peanut/SVanno/NDH108.CDS.bed.gz"
+columns = [4]
+names=["olp_CDS"]
+ops = ["uniq"]
+
+[[annotation]]
+file="/share/home/user/hzxue/peanut/SVanno/NDH108.ud3k.bed.gz"
+columns = [4]
+names=["olp_ud3k"]
+ops = ["uniq"]
+
+
+
