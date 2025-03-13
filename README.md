@@ -25,7 +25,7 @@ BUSCO, QUAST, LAI benchmark of genome assembly
 ### RepeatAnnotation 
 Repeat element annotation with genome
 
-### GeneAnnotation
+### GeneAnnotation (Preparing)
 Gene annotation with genome
 
 ### GeneLevel_PangenomeBuild
@@ -37,10 +37,16 @@ Sequence-level pangenome build using minigraph-cactus
 ### SVDetection
 SV detection with assemblies, long reads using cutesv-asm, svim-asm, cutesv
 
-### ShortReadGenotyping
-Genotyping with short reads using Pangeine
+### SVAnnotation
+SV annotation with gene regions using Vcfanno
 
-### RNAseqCount
+### ShortReadGenotyping
+Genotyping with short reads using EVG
+
+### GWAS
+GWAS with variants (SNPs or SVs) using Plink and  Emmax
+
+### RNAseqCount 
 Count gene expression level using Stringtie
 
 
